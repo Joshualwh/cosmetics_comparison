@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import Navigation from './components/navigation/navigation';
 import Slideshow from './components/slideshow/slideshow';
 import Signin from './components/signin/signin';
-import News from './components/news/news';
+import Signup from './components/signup/signup';
+import Compare from './components/compare/compare';
 
 const initialState = {
   route: 'home',
@@ -19,6 +20,8 @@ class App extends Component {
     if (route === 'home') {
       this.setState(initialState);
     } else if (route === 'signin') {
+      this.setState({route: route})
+    } else if (route === 'signup') {
       this.setState({route: route})
     }
     this.setState({route: route});
@@ -38,7 +41,7 @@ class App extends Component {
           ? <div>
               <Signin />
             </div>
-          : <News />
+          : <Signup />
         )
         }
       </div>

@@ -6,22 +6,18 @@ import './navigation.css';
 const Navigation = ({onRouteChange}) => {
   return (
     <nav>
-      <div className="image">
-        <a href="home">
-          <img alt='Logo' src={logo_pic}/>
-        </a>
-      </div>
-      <div className="p-3 text-bg-dark d-flex flex-wrap align-items-center justify-content-between">
-        <ul className="nav col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a onClick={() => onRouteChange('home')} className="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="#" className="nav-link px-2 text-white">Features</a></li>
-          <li><a href="#" className="nav-link px-2 text-white">Compare</a></li>
-          <li><a href="#" className="nav-link px-2 text-white">FAQs</a></li>
-          <li><a href="#" className="nav-link px-2 text-white">About</a></li>
+      <div className="px-3 text-bg-body d-flex align-items-center">
+        <ul className="col nav text-start mb-md-0">
+          <li><a href="#" onClick={() => onRouteChange('home')} className="nav-link px-2 text-body">Home</a></li>
+          {/* <li><a href="#" className="nav-link px-2 text-body">Compare</a></li> */}
+          <li><a href="#" className="nav-link px-2 text-body">About</a></li>
         </ul>
-        <div className="text-end">
-          <button onClick={() => onRouteChange('signin')} type="button" className="btn btn-outline-light me-2">Sign In</button>
-          <button type="button" className="btn btn-light">Sign-up</button>
+        <div className="col image">
+          <a href="home"><img alt='Logo' src={logo_pic}/></a>
+        </div>
+        <div className="col text-end">
+          <button onClick={() => onRouteChange('signin')} type="button" className="btn btn-outline-dark mx-2">Sign In</button>
+          <button onClick={() => onRouteChange('signup')} type="button" className="btn btn-dark mx-2">Sign Up</button>
         </div>
       </div>
     </nav>

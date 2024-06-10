@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import logo_pic from './favicon.png';
+import './signin.css';
 
 class Signin extends Component {
   render() {
     return(
       <nav className="d-flex align-items-center py-4 bg-body-tertiary">
-        <main className="form-signin w-100 m-auto">
+        <main className="form-signin">
           <form>
-            <img className="mb-4" src={logo_pic} alt="" width="72" height="57"/>
             <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
             <div className="form-floating">
               <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com"/>
