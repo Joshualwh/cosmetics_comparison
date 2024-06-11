@@ -34,14 +34,14 @@ class App extends Component {
         <Navigation onRouteChange={this.onRouteChange}/>
         { route === 'home'
         ? <div>
-            <Slideshow />
+            <Slideshow/>
           </div>
         : (
           route === 'signin'
           ? <div>
-              <Signin />
+              <Signin/>
             </div>
-          : <Signup />
+          : <Signup/>
         )
         }
       </div>
