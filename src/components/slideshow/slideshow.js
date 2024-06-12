@@ -8,26 +8,33 @@ import img3 from './wes-hicks-ZW6RUvsaFTc-unsplash.jpg';
 
 class Slideshow extends Component {
   render() {
-    const images = [img1, img2, img3];
-    console.log(images[0]);
     return(
-      <Slide>
-        <div className="each-slide-effect">
-          <div style={{backgroundImage: `url(${images[0]})`}}>
-              <span>Slide 1</span>
+      <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
+        <ol className="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <img className="d-block w-100" src={img1} alt="First slide"/>
+          </div>
+          <div className="carousel-item">
+            <img className="d-block w-100" src={img2} alt="Second slide"/>
+          </div>
+          <div className="carousel-item">
+            <img className="d-block w-100" src={img3} alt="Third slide"/>
           </div>
         </div>
-        <div className="each-slide-effect">
-          <div style={{ 'backgroundImage': `url(${images[1]})` }}>
-              <span>Slide 2</span>
-          </div>
-        </div>
-        <div className="each-slide-effect">
-          <div style={{ 'backgroundImage': `url(${images[2]})` }}>
-              <span>Slide 3</span>
-          </div>
-        </div>
-      </Slide>
+        <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="sr-only">Previous</span>
+        </a>
+        <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="sr-only">Next</span>
+        </a>
+      </div>
     )
   }
 }

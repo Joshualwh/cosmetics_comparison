@@ -16,7 +16,7 @@ const Navigation = ({onRouteChange}) => {
           <a href="home"><img alt='Logo' src={logo_pic}/></a>
         </div>
         <div className="col text-end">
-          <button onClick={() => onRouteChange('signin')} type="button" className="btn btn-outline-dark mx-2">Sign In</button>
+          <button onClick={() => onRouteChange('signin')} type="button" className="btn btn-outline-dark btn-hover-bg-light mx-2">Sign In</button>
           <button onClick={() => onRouteChange('signup')} type="button" className="btn btn-dark mx-2">Sign Up</button>
         </div>
       </div>
