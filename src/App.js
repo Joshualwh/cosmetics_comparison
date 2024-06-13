@@ -2,12 +2,19 @@ import './App.css';
 import React, { Component } from 'react';
 import Navigation from './components/navigation/navigation';
 import Slideshow from './components/slideshow/slideshow';
+import About from './components/about/about';
 import Signin from './components/signin/signin';
 import Signup from './components/signup/signup';
-import Compare from './components/compare/compare';
 
 const initialState = {
   route: 'home',
+  user: {
+    id: '',
+    name: '',
+    email: '',
+    entries: 0,
+    joined: ''
+  }
 }
 
 class App extends Component {
@@ -16,15 +23,8 @@ class App extends Component {
     this.state = initialState;
   }
 
-  onRouteChange = (route) => {
-    if (route === 'home') {
-      this.setState(initialState);
-    } else if (route === 'signin') {
-      this.setState({route: route})
-    } else if (route === 'signup') {
-      this.setState({route: route})
-    }
-    this.setState({route: route});
+  onRouteChange = (route_change) => {
+    this.setState({route: route_change});
   }
   
   render() {
@@ -32,18 +32,20 @@ class App extends Component {
     return (
       <div className="App">
         <Navigation onRouteChange={this.onRouteChange}/>
-        { route === 'home'
-        ? <div>
-            <Slideshow/>
-          </div>
-        : (
-          route === 'signin'
-          ? <div>
-              <Signin/>
-            </div>
-          : <Signup/>
-        )
-        }
+        {(() => {
+        switch (route) {
+          case 'home':
+            return <Slideshow/>
+          case 'about':
+            return <About/>
+          case 'signin':
+            return <Signin/>
+          case 'signup':
+            return <Signup/>
+          default:
+            return <Slideshow/>
+          }
+        })()}
       </div>
     );
   }

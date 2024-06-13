@@ -1,41 +1,62 @@
 import React, { Component } from "react";
-import logo_pic from './favicon.png';
 import './signin.css';
 
 class Signin extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      signInEmail: '',
+      signInPassword: ''
+    }
+  }
+  
+  onEmailChange = (event) => {
+    this.setState({signInEmail: event.target.value})
+  }
+
+  onPasswordChange = (event) => {
+    this.setState({signInPassword: event.target.value})
+  }
+
   render() {
     return(
-      <div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content rounded-5 shadow">
-            <div class="modal-header p-5 pb-4 border-bottom-0">
-              <h2 class="fw-bold mb-0">Sign In</h2>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div className="modal modal-signin position-static d-block bg-secondary py-5" tabIndex="-1" role="dialog" id="modalSignin">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content rounded-5 shadow">
+            {/* Sign in header */}
+            <div className="modal-header p-5 pb-4 border-bottom-0">
+              <h2 className="fw-bold mb-0">Sign In</h2>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body p-5 pt-0">
-              <form class="">
-                <div class="form-floating mb-3">
-                  <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com"/>
-                  <label for="floatingInput">Email address</label>
+            <div className="modal-body p-5 pt-0">
+              <form className="">
+                {/* Sign in email address input */}
+                <div className="form-floating mb-3">
+                  <input type="email" className="form-control rounded-4" id="floatingInput" placeholder="name@example.com"/>
+                  <label htmlFor="floatingInput">Email address</label>
                 </div>
-                <div class="form-floating mb-3">
-                  <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password"/>
-                  <label for="floatingPassword">Password</label>
+                {/* Sign in password input */}
+                <div className="form-floating mb-3">
+                  <input type="password" className="form-control rounded-4" id="floatingPassword" placeholder="Password"/>
+                  <label htmlFor="floatingPassword">Password</label>
                 </div>
+                {/* Remember me checkbox */}
                 <div className="form-check text-start my-3">
                   <input className="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault"/>
                   <label className="form-check-label" htmlFor="flexCheckDefault">
                     Remember me
                   </label>
+                {/* Sign in button */}
                 </div>
-                <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Sign In</button>
+                <button className="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Sign In</button>
+                {/*  */}
                 <small className="text-muted d-flex align-items-center justify-content-center">
                   Don't have an account?
-                  <a href="http://localhost:3000/signup" className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Sign up</a>
+                  <a href="http://localhost:3000/signup" className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover px-1">Sign up</a>
                   now!
                 </small>
                 <h5 className="my-4 hr-text"><span>or</span></h5>
-                <div class="w-auto container text-center row column-gap-3">
+                <div className="w-auto container text-center row column-gap-3">
                   <button className="col d-flex justify-content-center align-items-center column-gap-1 w-100 py-2 mb-2 btn btn-outline-dark rounded-4" type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-twitter-x " viewBox="0 0 16 16">
                       <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
@@ -49,7 +70,7 @@ class Signin extends Component {
                     Facebook
                   </button>
                   <button className="col d-flex justify-content-center align-items-center column-gap-1 w-100 py-2 mb-2 btn btn-outline-secondary rounded-4" type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-google" viewBox="0 0 16 16">
                       <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"/>
                     </svg>
                     Google

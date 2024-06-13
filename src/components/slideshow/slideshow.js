@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
-import './slideshow.css';
 import img1 from './leo_visions-I62h3Pv-JSI-unsplash.jpg';
 import img2 from './lisa-yount-W2pwbgyn5RE-unsplash.jpg';
 import img3 from './wes-hicks-ZW6RUvsaFTc-unsplash.jpg';
@@ -31,8 +29,8 @@ class Slideshow extends Component {
           <span className="sr-only">Previous</span>
         </a>
         <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
           <span className="sr-only">Next</span>
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
         </a>
       </div>
     )
