@@ -8,6 +8,7 @@ import Signup from './components/signup/signup';
 
 const initialState = {
   route: 'home',
+  is_signed_in: false,
   user: {
     id: '',
     name: '',
@@ -39,9 +40,9 @@ class App extends Component {
           case 'about':
             return <About/>
           case 'signin':
-            return <Signin/>
+            return <Signin onRouteChange={this.onRouteChange}/>
           case 'signup':
-            return <Signup/>
+            return <Signup onRouteChange={this.onRouteChange}/>
           default:
             return <Slideshow/>
           }

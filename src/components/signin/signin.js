@@ -5,20 +5,39 @@ class Signin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      signInEmail: '',
-      signInPassword: ''
+      sign_in_email: '',
+      sign_in_password: ''
     }
   }
   
   onEmailChange = (event) => {
-    this.setState({signInEmail: event.target.value})
+    this.setState({sign_in_email: event.target.value})
   }
 
   onPasswordChange = (event) => {
     this.setState({signInPassword: event.target.value})
   }
 
+  onSubmitSignIn = () => {
+    fetch('https://localhost:3000/signin', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        email:this.state.sign_in_email,
+        password: this.state.sign_in_password
+      })
+    })
+    .then(response => response.json())
+      .then(user => {
+        if(user.id){ 
+          this.props.loadUser(user);
+          this.props.onRouteChange('home');
+        }
+      })
+  }
+
   render() {
+    const { onRouteChange } = this.props;
     return(
       <div className="modal modal-signin position-static d-block bg-secondary py-5" tabIndex="-1" role="dialog" id="modalSignin">
         <div className="modal-dialog" role="document">
@@ -32,12 +51,12 @@ class Signin extends Component {
               <form className="">
                 {/* Sign in email address input */}
                 <div className="form-floating mb-3">
-                  <input type="email" className="form-control rounded-4" id="floatingInput" placeholder="name@example.com"/>
+                  <input type="email" className="form-control rounded-4" id="floatingInput" placeholder="name@example.com" onChange={this.onEmailChange}/>
                   <label htmlFor="floatingInput">Email address</label>
                 </div>
                 {/* Sign in password input */}
                 <div className="form-floating mb-3">
-                  <input type="password" className="form-control rounded-4" id="floatingPassword" placeholder="Password"/>
+                  <input type="password" className="form-control rounded-4" id="floatingPassword" placeholder="Password" onChange={this.onPasswordChange}/>
                   <label htmlFor="floatingPassword">Password</label>
                 </div>
                 {/* Remember me checkbox */}
@@ -48,11 +67,11 @@ class Signin extends Component {
                   </label>
                 {/* Sign in button */}
                 </div>
-                <button className="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Sign In</button>
+                <button onClick={this.onSubmitSignIn} className="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Sign In</button>
                 {/*  */}
                 <small className="text-muted d-flex align-items-center justify-content-center">
                   Don't have an account?
-                  <a href="http://localhost:3000/signup" className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover px-1">Sign up</a>
+                  <a href="http://localhost:3000/signup" onClick={() => onRouteChange('signup')} className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover px-1">Sign up</a>
                   now!
                 </small>
                 <h5 className="my-4 hr-text"><span>or</span></h5>

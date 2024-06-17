@@ -2,6 +2,15 @@ import React, { Component } from "react";
 import "./signup.css";
 
 class Signup extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sign_up_email: '',
+      sign_up_password: '',
+      name: ''
+    }
+  }
+
   render() {
     return(
       <div className="modal modal-signin position-static d-block bg-secondary py-5" tabIndex="-1" role="dialog" id="modalSignin">
