@@ -40,9 +40,9 @@ class App extends Component {
           case 'about':
             return <About/>
           case 'signin':
-            return <Signin onRouteChange={this.onRouteChange}/>
+            return <Signin/>
           case 'signup':
-            return <Signup onRouteChange={this.onRouteChange}/>
+            return <Signup/>
           default:
             return <Slideshow/>
           }

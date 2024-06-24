@@ -24,14 +24,14 @@ class Signin extends Component {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         email:this.state.sign_in_email,
-        password: this.state.sign_in_password
+        secret: this.state.sign_in_password
       })
     })
     .then(response => response.json())
       .then(user => {
         if(user.id){ 
           this.props.loadUser(user);
-          this.props.onRouteChange('home');
+          // this.props.onRouteChange('home');
         }
       })
   }
@@ -71,7 +71,7 @@ class Signin extends Component {
                 {/*  */}
                 <small className="text-muted d-flex align-items-center justify-content-center">
                   Don't have an account?
-                  <a href="http://localhost:3000/signup" onClick={() => onRouteChange('signup')} className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover px-1">Sign up</a>
+                  <a className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover px-1">Sign up</a>
                   now!
                 </small>
                 <h5 className="my-4 hr-text"><span>or</span></h5>
