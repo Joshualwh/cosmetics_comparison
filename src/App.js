@@ -12,9 +12,7 @@ const initialState = {
   user: {
     id: '',
     name: '',
-    email: '',
-    entries: 0,
-    joined: ''
+    email: ''  
   }
 }
 
@@ -22,6 +20,15 @@ class App extends Component {
   constructor() {
     super();
     this.state = initialState;
+  }
+
+  loadUser = (data) => {
+    this.setState({user :{
+        id: data.id,
+        name: data.name,
+        email: data.secret
+      }
+    })
   }
 
   onRouteChange = (route_change) => {
@@ -40,9 +47,9 @@ class App extends Component {
           case 'about':
             return <About/>
           case 'signin':
-            return <Signin/>
+            return <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
           case 'signup':
-            return <Signup/>
+            return <Signup onRouteChange={this.onRouteChange}/>
           default:
             return <Slideshow/>
           }

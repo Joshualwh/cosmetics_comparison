@@ -18,12 +18,12 @@ class Signin extends Component {
     this.setState({signInPassword: event.target.value})
   }
 
-  onSubmitSignIn = () => {
-    fetch('https://localhost:3000/signin', {
+  onSubmitSignIn = (event) => {
+    fetch('http://localhost:3000/signin', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        email:this.state.sign_in_email,
+        email: this.state.sign_in_email,
         secret: this.state.sign_in_password
       })
     })
@@ -31,13 +31,17 @@ class Signin extends Component {
       .then(user => {
         if(user.id){ 
           this.props.loadUser(user);
-          // this.props.onRouteChange('home');
         }
       })
+      event.preventDefault();
+  }
+
+  onClickSignUp = (event) => {
+    // event.preventDefault();
+    this.props.onRouteChange('signup');
   }
 
   render() {
-    const { onRouteChange } = this.props;
     return(
       <div className="modal modal-signin position-static d-block bg-secondary py-5" tabIndex="-1" role="dialog" id="modalSignin">
         <div className="modal-dialog" role="document">
@@ -51,12 +55,24 @@ class Signin extends Component {
               <form className="">
                 {/* Sign in email address input */}
                 <div className="form-floating mb-3">
-                  <input type="email" className="form-control rounded-4" id="floatingInput" placeholder="name@example.com" onChange={this.onEmailChange}/>
+                  <input 
+                    onChange={this.onEmailChange} 
+                    type="email" 
+                    className="form-control rounded-4" 
+                    id="floatingInput" 
+                    placeholder="name@example.com"
+                  />
                   <label htmlFor="floatingInput">Email address</label>
                 </div>
                 {/* Sign in password input */}
                 <div className="form-floating mb-3">
-                  <input type="password" className="form-control rounded-4" id="floatingPassword" placeholder="Password" onChange={this.onPasswordChange}/>
+                  <input 
+                    onChange={this.onPasswordChange}
+                    type="password" 
+                    className="form-control rounded-4" 
+                    id="floatingPassword" 
+                    placeholder="Password"
+                  />
                   <label htmlFor="floatingPassword">Password</label>
                 </div>
                 {/* Remember me checkbox */}
@@ -65,13 +81,22 @@ class Signin extends Component {
                   <label className="form-check-label" htmlFor="flexCheckDefault">
                     Remember me
                   </label>
-                {/* Sign in button */}
                 </div>
-                <button onClick={this.onSubmitSignIn} className="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Sign In</button>
+                {/* Sign in button */}
+                <button 
+                  onClick={(event) => this.onSubmitSignIn(event)} 
+                  className="w-100 mb-2 btn btn-lg rounded-4 btn-primary" 
+                  type="submit">
+                  Sign In
+                </button>
                 {/*  */}
                 <small className="text-muted d-flex align-items-center justify-content-center">
                   Don't have an account?
-                  <a className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover px-1">Sign up</a>
+                  <a 
+                    onClick={(event) => this.onClickSignUp(event)} 
+                    className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover px-1">
+                      Sign up
+                  </a>
                   now!
                 </small>
                 <h5 className="my-4 hr-text"><span>or</span></h5>
@@ -88,7 +113,7 @@ class Signin extends Component {
                     </svg>
                     Facebook
                   </button>
-                  <button className="col d-flex justify-content-center align-items-center column-gap-1 w-100 py-2 mb-2 btn btn-outline-secondary rounded-4" type="submit">
+                  <button className="col d-flex justify-content-center align-items-center column-gap-1 w-100 py-2 mb-2 btn btn-outline-success rounded-4" type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-google" viewBox="0 0 16 16">
                       <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"/>
                     </svg>
