@@ -5,13 +5,13 @@ class Signin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sign_in_email: '',
-      sign_in_password: ''
+      signInEmail: '',
+      signInPassword: ''
     }
   }
   
   onEmailChange = (event) => {
-    this.setState({sign_in_email: event.target.value})
+    this.setState({signInEmail: event.target.value})
   }
 
   onPasswordChange = (event) => {
@@ -19,12 +19,13 @@ class Signin extends Component {
   }
 
   onSubmitSignIn = (event) => {
+    console.log(this.state);
     fetch('http://localhost:3000/signin', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        email: this.state.sign_in_email,
-        secret: this.state.sign_in_password
+        email: this.state.signInEmail,
+        secret: this.state.signInPassword
       })
     })
     .then(response => response.json())
