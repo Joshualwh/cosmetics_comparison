@@ -32,6 +32,8 @@ class Signin extends Component {
       .then(user => {
         if(user.id){ 
           this.props.loadUser(user);
+          console.log('Successfully signed in!');
+          this.props.onRouteChange('home');
         }
       })
       event.preventDefault();

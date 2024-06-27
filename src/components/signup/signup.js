@@ -5,10 +5,40 @@ class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sign_up_email: '',
-      sign_up_password: '',
-      name: ''
+      signUpEmail: '',
+      signUpPassword: '',
     }
+  }
+
+  onEmailChange = (event) => {
+    this.setState({signUpEmail: event.target.value})
+  }
+
+  onPasswordChange = (event) => {
+    this.setState({signUpPassword: event.target.value})
+  }
+
+  onSubmitSignUp = (event) => {
+    console.log(this.state);
+    fetch('http://localhost:3000/signup', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        email: this.state.signUpEmail,
+        secret: this.state.signUpPassword
+      })
+    })
+    .then(response => console.log(response.json()))
+      .then(user => {
+        console.log('Successfully registered');
+        this.props.onRouteChange('home');
+      })
+      event.preventDefault();
+  }
+
+  onClickTermsOfUse = () => {
+    // event.preventDefault();
+    this.props.onRouteChange('about');
   }
 
   render() {
@@ -23,14 +53,30 @@ class Signup extends Component {
             <div className="modal-body p-5 pt-0">
               <form className="">
                 <div className="form-floating mb-3">
-                  <input type="email" className="form-control rounded-4" id="floatingInput" placeholder="name@example.com"/>
+                  <input 
+                    onChange={this.onEmailChange} 
+                    type="email" 
+                    className="form-control rounded-4" 
+                    id="floatingInput" 
+                    placeholder="name@example.com"
+                  />
                   <label htmlFor="floatingInput">Email address</label>
                 </div>
                 <div className="form-floating mb-3">
-                  <input type="password" className="form-control rounded-4" id="floatingPassword" placeholder="Password"/>
+                  <input 
+                    onChange={this.onPasswordChange}
+                    type="password" 
+                    className="form-control rounded-4" 
+                    id="floatingPassword" 
+                    placeholder="Password"/>
                   <label htmlFor="floatingPassword">Password</label>
                 </div>
-                <button className="w-100 btn btn-lg rounded-4 btn-primary" type="submit">Sign up</button>
+                <button 
+                  onClick={(event) => this.onSubmitSignUp(event)}
+                  className="w-100 btn btn-lg rounded-4 btn-primary" 
+                  type="submit">
+                  Sign up
+                </button>
                 <h5 className="my-4 hr-text"><span>or</span></h5>
                 <div className="w-auto container text-center row column-gap-3">
                   <button className="col d-flex justify-content-center align-items-center column-gap-1 w-100 py-2 mb-2 btn btn-outline-dark rounded-4" type="submit">
@@ -52,7 +98,13 @@ class Signup extends Component {
                     Google
                   </button>
                 </div>
-                <small className="text-muted">By signing up, you agree to the terms of use.</small>
+                <small className="text-muted">By signing up, you agree to the 
+                  <a 
+                    onClick={(event) => this.onClickTermsOfUse(event)} 
+                    className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover px-1">
+                      terms of use.
+                  </a>
+                </small>
               </form>
             </div>
           </div>

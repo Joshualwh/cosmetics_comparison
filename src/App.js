@@ -1,5 +1,6 @@
 import './App.css';
 import React, { Component } from 'react';
+import { GoogleLogin } from '@react-oauth/google';
 import Navigation from './components/navigation/navigation';
 import Slideshow from './components/slideshow/slideshow';
 import About from './components/about/about';
